@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.auxiliary.mapper.UserCommentMapper">
+
+<select id="getUserCommentByGoodsId" resultType="com.example.auxiliary.entity.UserComment">
+
+    SELECT
+        b.avatar_url,
+        a.contents,
+        a.create_datetime,
+        b.phone,
+        b.nick_name user_name,
+        a.star
+    FROM
+        user_comment a,
+        `user` b
+    WHERE
+        b.id = a.user_id
+      AND a.goods_id = #{goodsId}
+
+</select>
+
+</mapper>

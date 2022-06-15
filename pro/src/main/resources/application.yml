@@ -1,0 +1,60 @@
+server:
+  port: 8120
+  servlet:
+    context-path: /
+
+spring:
+  resources:
+    static-locations: file:/Users/zhangtaixin/static/
+  mvc:
+    static-path-pattern: /files/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/food-order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    hikari:
+      # 连接池最大连接数，默认是 10
+      maximum-pool-size: 60
+      # 链接超时时间，默认 30000(30 秒)
+      connection-timeout: 60000
+      # 空闲连接存活最大时间，默认 600000(10 分钟)
+      idle-timeout: 60000
+      # 连接将被测试活动的最大时间量
+      validation-timeout: 3000
+      # 此属性控制池中连接的最长生命周期，值 0 表示无限生命周期，默认 1800000(30 分钟)
+      max-lifetime: 60000
+      # 连接到数据库时等待的最长时间(秒)
+      login-timeout: 5
+      # 池中维护的最小空闲连接数
+      minimum-idle: 10
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+wx:
+  miniapp:
+    configs:
+      - appid: wxf9ba39a08b62c69f #微信小程序的appid
+        secret: 6f04b6da3a69b077ba2db225cb423bf5 #微信小程序的Secret
+        token: 1111 #微信小程序消息服务器配置的token
+        aesKey: 3gupPnqugoAVjRYSbxj3wrQsWCUVV0aQxzoaGUP8kKH #微信小程序消息服务器配置的EncodingAESKey
+        msgDataFormat: JSON
+file:
+  root:
+    path: /Users/Zhangtaixin/static/
